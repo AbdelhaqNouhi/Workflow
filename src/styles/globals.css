@@ -1,0 +1,90 @@
+
+@import "tailwindcss";
+
+/* ========================================
+  1. THEME — COLORS & TYPOGRAPHY
+======================================== */
+
+@theme {
+  /* Primary */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-light: #eff6ff;
+
+  /* Secondary */
+  --color-secondary: #64748b;
+  --color-secondary-hover: #475569;
+
+  /* Backgrounds */
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-sidebar: #101828;
+
+  /* Text */
+  --color-foreground: #0f172a;
+  --color-muted: #64748b;
+  --color-sidebar-foreground: #f8fafc;
+
+  /* Borders */
+  --color-border: #e2e8f0;
+  --color-input: #cbd5e1;
+
+  /* Status */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-info: #0284c7;
+
+  /* Typography */
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+/* ========================================
+  2. LAYOUT TOKENS
+======================================== */
+
+:root {
+  --sidebar-width: 260px;
+  --header-height: 64px;
+}
+
+/* ========================================
+  3. GLOBAL STYLES
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
