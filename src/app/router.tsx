@@ -12,7 +12,7 @@ function ComingSoonPage({title}: {title: string}) {
             title={title}
             description="This section is currently under development."
         />
-    );
+    )
 }
 
 export const router = createBrowserRouter([

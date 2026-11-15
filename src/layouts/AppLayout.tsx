@@ -23,7 +23,10 @@ export function AppLayout() {
             )}
 
             <div className="min-h-screen lg:pl-64">
-                <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+                <Sidebar 
+                    isOpen={isSidebarOpen} 
+                    onClose={closeSidebar} 
+                />
                 <Header onMenuClick={openSidebar} />
 
                 <main

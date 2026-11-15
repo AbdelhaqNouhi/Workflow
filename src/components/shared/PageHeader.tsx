@@ -18,7 +18,6 @@ export function PageHeader({title, description, actions}: PageHeaderProps) {
                     <p className="mt-1 text-sm text-muted">{description}</p>
                 )}
             </div>
-
             {actions && (
                 <div className="flex shrink-0 items-center gap-3">
                     {actions}

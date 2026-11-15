@@ -1,7 +1,7 @@
 import {Link, NavLink} from "react-router";
 import {X} from "lucide-react";
 
-import {settingsNavigation, workspaceNavigation} from "@/app/navigation";
+import {settingsNavigation, appNavigation} from "@/app/navigation";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -19,7 +19,7 @@ export function Sidebar({isOpen, onClose}: SidebarProps) {
         ].join(" ");
 
     return (
-        <aside
+        <div
             id="workflow-sidebar"
             aria-label="Application sidebar"
             className={[
@@ -56,31 +56,26 @@ export function Sidebar({isOpen, onClose}: SidebarProps) {
                 aria-label="Main navigation"
                 className="flex-1 space-y-2 overflow-y-auto px-3 py-6"
             >
-                <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Workspace
-                </p>
-
-                {workspaceNavigation.map((item) => {
-                    const Icon = item.icon;
-
-                    return (
-                        <NavLink
-                            key={item.to}
-                            to={item.to}
-                            end={item.end}
-                            onClick={onClose}
-                            className={linkClasses}
-                        >
-                            <Icon
-                                size={18}
-                                strokeWidth={1.8}
-                                aria-hidden="true"
-                            />
-                            <span>{item.label}</span>
-                        </NavLink>
-                    );
-                })}
-            </nav>
+            {appNavigation.map((item) => {
+                const Icon = item.icon;
+                return (
+                    <NavLink
+                        key={item.to}
+                        to={item.to}
+                        end={item.end}
+                        onClick={onClose}
+                        className={linkClasses}
+                    >
+                        <Icon
+                            size={18}
+                            strokeWidth={1.8}
+                            aria-hidden="true"
+                        />
+                        <span>{item.label}</span>
+                    </NavLink>
+                );
+            })}
+        </nav>
 
             {/* Settings navigation */}
             <div className="shrink-0 border-t border-white/10 p-3">
@@ -104,6 +99,6 @@ export function Sidebar({isOpen, onClose}: SidebarProps) {
                     );
                 })}
             </div>
-        </aside>
+        </div>
     );
 }

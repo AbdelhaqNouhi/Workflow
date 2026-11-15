@@ -17,7 +17,7 @@ export interface NavigationItem {
     end?: boolean;
 }
 
-export const workspaceNavigation = [
+export const appNavigation = [
     {
         label: "Dashboard",
         to: "/dashboard",

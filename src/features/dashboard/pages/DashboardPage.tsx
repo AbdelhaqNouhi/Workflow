@@ -1,87 +1,55 @@
-import {MetricCard} from "@/components/shared/MetricCard";
-import type {MetricCardProps} from "@/components/shared/MetricCard";
-import {PageHeader} from "@/components/shared/PageHeader";
+import {WorkOrdersChart} from "../components/WorkOrdersChart";
+import {WorkOrderStatusChart} from "../components/WorkOrderStatusChart";
 
 const metrics = [
-    {
-        label: "Total Work Orders",
-        value: "248",
-        trend: {
-            value: "+12.5%",
-            description: "vs last month",
-            tone: "positive",
-        },
-    },
-    {
-        label: "Active Work Orders",
-        value: "42",
-        trend: {
-            value: "+8.2%",
-            description: "vs last month",
-            tone: "positive",
-        },
-    },
-    {
-        label: "Completed",
-        value: "186",
-        trend: {
-            value: "+16.4%",
-            description: "vs last month",
-            tone: "positive",
-        },
-    },
-    {
-        label: "Overdue",
-        value: "12",
-        trend: {
-            value: "-3.1%",
-            description: "vs last month",
-            tone: "positive",
-        },
-    },
-] satisfies MetricCardProps[];
+    {label: "Total Work Orders", value: "260", change: "+12.5%"},
+    {label: "Active Work Orders", value: "42", change: "+8.2%"},
+    {label: "Completed", value: "186", change: "+16.4%"},
+    {label: "Overdue", value: "12", change: "-3.1%"},
+];
 
 export function DashboardPage() {
     return (
         <div className="space-y-8">
-            <PageHeader
-                title="Dashboard"
-                description="Monitor your operations and team performance."
-            />
+            <div>
+                <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+                    Dashboard
+                </h1>
 
-            {/* KPI cards */}
-            <section
-                aria-label="Key performance indicators"
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
-            >
+                <p className="mt-1 text-sm text-muted">
+                    Here's what's happening with your operations today.
+                </p>
+            </div>
+
+            <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
                 {metrics.map((metric) => (
-                    <MetricCard key={metric.label} {...metric} />
+                    <article
+                        key={metric.label}
+                        className="rounded-lg border border-border bg-surface p-5"
+                    >
+                        <p className="text-sm font-medium text-muted">
+                            {metric.label}
+                        </p>
+
+                        <div className="mt-3 flex items-end justify-between">
+                            <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+                                {metric.value}
+                            </h2>
+
+                            <span className="text-sm font-medium text-success">
+                                {metric.change}
+                            </span>
+                        </div>
+                    </article>
                 ))}
             </section>
 
-            {/* Analytics */}
-            <section
-                aria-labelledby="work-orders-chart-title"
-                className="rounded-lg border border-border bg-surface p-5 sm:p-6"
-            >
-                <div>
-                    <h2
-                        id="work-orders-chart-title"
-                        className="text-base font-semibold text-foreground"
-                    >
-                        Work Orders Overview
-                    </h2>
-
-                    <p className="mt-1 text-sm text-muted">
-                        Track work order activity over time.
-                    </p>
+            <section className="grid grid-cols-1 gap-5 xl:grid-cols-3">
+                <div className="xl:col-span-2">
+                    <WorkOrdersChart />
                 </div>
 
-                <div className="mt-6 flex min-h-64 items-center justify-center rounded-md border border-dashed border-border bg-background">
-                    <p className="text-sm text-muted">
-                        Analytics chart coming next.
-                    </p>
-                </div>
+                <WorkOrderStatusChart />
             </section>
         </div>
     );

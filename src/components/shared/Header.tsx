@@ -1,10 +1,26 @@
 import {Bell, Menu, Search} from "lucide-react";
-
+import {useState} from "react";
 interface HeaderProps {
     onMenuClick: () => void;
 }
 
 export function Header({onMenuClick}: HeaderProps) {
+    const [openNotifications, setOpenNotifications] = useState(false);
+    const Notifications = [
+        {
+            id: 1,
+            title: "New message from John",
+            description: "Hey, just wanted to check in and see how you're doing.",
+            time: "2 hours ago",
+        },
+        {
+            id: 2,
+            title: "Server downtime",
+            description: "The server will be down for maintenance tonight from 12am to 2am.",
+            time: "5 hours ago",
+        },
+    ]
+
     return (
         <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-border bg-surface px-4 sm:px-6 lg:px-8">
             <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -25,11 +41,11 @@ export function Header({onMenuClick}: HeaderProps) {
                         aria-hidden="true"
                     />
 
-                    <span className="sr-only">Search workspace</span>
+                    <span className="sr-only">Search</span>
 
                     <input
                         type="search"
-                        placeholder="Search workspace..."
+                        placeholder="Search..."
                         className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
                     />
                 </label>
@@ -37,14 +53,31 @@ export function Header({onMenuClick}: HeaderProps) {
 
             <div className="ml-4 flex shrink-0 items-center gap-4">
                 <button
+                    onClick={() => setOpenNotifications(!openNotifications)}
                     type="button"
-                    disabled
-                    aria-label="Notifications are not available yet"
-                    title="Notifications coming soon"
+                    aria-label="Notifications"
+                    title="Notifications"
                     className="relative rounded-md p-2 text-muted opacity-70"
                 >
-                    <Bell size={19} strokeWidth={1.8} aria-hidden="true" />
+                    <Bell size={20} strokeWidth={1.8} aria-hidden="true" />
                 </button>
+                {openNotifications && (
+                    <div className="absolute right-46 top-14 z-50 w-80 rounded-md bg-background p-4 shadow-lg">
+                        {Notifications.map((notification) => (
+                            <div key={notification.id} className="mb-4 last:mb-0">
+                                <h3 className="text-sm font-semibold text-foreground">
+                                    {notification.title}
+                                </h3>
+                                <p className="text-xs text-muted">
+                                    {notification.description}
+                                </p>
+                                <p className="text-xs text-muted">
+                                    {notification.time}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                )}
 
                 <div className="flex items-center gap-3 border-l border-border pl-4">
                     <div
